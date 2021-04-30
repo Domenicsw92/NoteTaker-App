@@ -22,10 +22,10 @@ module.exports = function (app){
     });
     // make a put route
 
-    app.delete("/api/notes", function(req, res){
-        req.body.id = noteTaker.length 
-        noteTaker.push(req.body);
-        res.json(noteTaker)
+    app.delete("/api/notes:id", function(req, res){
+        console.log("req params", req.params.id)
+        // noteTaker.push(req.body);
+        // res.json(noteTaker)
     })
 
 }
