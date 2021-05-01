@@ -1,6 +1,7 @@
 const path = require("path")
 const fs = require("fs")
-const uuid = require("uuid")
+const uuid = require("uuid");
+const { json } = require("body-parser");
 
 
 module.exports = function (app) {
@@ -44,8 +45,8 @@ module.exports = function (app) {
                 return;
             }
             for (let i = 0; i < data.length; i++) {
-                if (notes[i].id === noteToDelete) {
-                    notes.splice(i, 1);
+                if (data[i].id === noteToDelete) {
+                    data.splice(i, 1);
                     return;
                 }
             }
