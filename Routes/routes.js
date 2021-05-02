@@ -54,12 +54,12 @@ module.exports = function (app) {
             let notesArray = JSON.parse(data)
             for (let i = 0; i < notesArray.length; i++) {
                 if (notesArray[i].id === noteToDelete) {
-                    console.log(notesArray[i])
+                    console.log("getting deleted",notesArray[i])
                     notesArray.splice(i, 1);
                 }
             }
             console.log("-------------->", notesArray)
-            fs.writeFile(path.join(__dirname,"../db/db.json"), JSON.stringify(data), (err) => {
+            fs.writeFile(path.join(__dirname,"../db/db.json"), JSON.stringify(notesArray), (err) => {
                 if (err) {
                     console.log(err);
                     res.sendStatus(500);
