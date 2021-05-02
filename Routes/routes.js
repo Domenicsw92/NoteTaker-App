@@ -17,12 +17,15 @@ module.exports = function (app) {
 
     app.post("/api/notes", function (req, res) {
         console.log("new note",req.body)
-        fs.readFile(path.join(__dirname,"../db/db.json"), (err,data) => {
+        fs.readFile(path.join(__dirname,"../db/db.json"), "utf8", (err,data) => {
             if (err) throw err;
-            const newNotes = req.body;
+            let newNotes = req.body;
             console.log(newNotes)
-            const notesArray = JSON.parse(data);
-            newNotes.id = uuid.v4();
+            let notesArray = JSON.parse(data);
+            // let id = notesArray[notesArray.length - 1].id +1;
+            // newNotes.id = id
+            // newNotes.id = uuidv4();
+            console.log(data)
             notesArray.push(newNotes)
             fs.writeFile(path.join(__dirname,"../db/db.json"), JSON.stringify(notesArray), (err,data) => {
                 return res.json(newNotes)
